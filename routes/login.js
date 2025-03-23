@@ -18,7 +18,8 @@ router.post('/', (req,res) => {
         }
         const user = results[0]
         if(user.password == password){
-            res.send('Sucessfully logged in')
+            req.session.user = {id: user.id, username: user.username}
+            res.redirect('dashboard')
         }
         else{
             res.send('The password is wrong')
